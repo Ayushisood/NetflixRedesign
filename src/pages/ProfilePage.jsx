@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { users } from "../firebase";
-import { getDocs } from "firebase/firestore";
+import { getDocs, setDoc, doc } from "firebase/firestore";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import PlanPage from "./PlanPage";
@@ -43,7 +43,10 @@ export default function ProfilePage() {
     });
   };
 
-  const manageSubscription = () => {
+  const manageSubscription = async () => {
+    await setDoc(doc(users, `${auth.currentUser.email}`), {
+      subscribed: false,
+    });
     dispatch(showSubscriptionDetail({ subscription: false }));
     handleClick();
   };

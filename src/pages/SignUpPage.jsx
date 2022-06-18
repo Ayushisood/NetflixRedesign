@@ -79,7 +79,7 @@ export default function SignUpPage({ enteredValue }) {
             <input
               type="email"
               placeholder={enteredValue ? "" : "Email"}
-              value={enteredValue ? enteredValue : ""}
+              value={enteredValue}
               className={`input`}
               {...register("email", { required: true })}
             />
