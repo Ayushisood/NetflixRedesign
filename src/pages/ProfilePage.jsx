@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { users } from "../firebase";
 import { getDocs, setDoc, doc } from "firebase/firestore";
 import { auth } from "../firebase";
@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../features/userSlice";
 
 export default function ProfilePage() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const subscription = useSelector(selectSubscription);
   const [prod, setProducts] = useState([]);
@@ -40,6 +41,7 @@ export default function ProfilePage() {
       dispatch(logout());
       dispatch(showSubscriptionDetail({ subscription: false }));
     });
+    navigate("/");
   };
 
   // if cancel membership, logout the user and update user's state of subscription at firebase
