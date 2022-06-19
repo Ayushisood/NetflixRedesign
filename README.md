@@ -13,9 +13,8 @@ This is a self learning project
 
 ## ScreenShots
 
-![Alt text](/images/2022-06-18(1).png?raw=true)
 
-![Alt text](/images/2022-06-18(2).png?raw=true)
+![Alt text](/images/2022-06-18.png?raw=true)
 
 
 ## Built with
