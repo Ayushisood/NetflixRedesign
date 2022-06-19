@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import { users } from "../firebase";
 import { getDocs, setDoc, doc } from "firebase/firestore";
 import { auth } from "../firebase";
-import { useNavigate } from "react-router-dom";
 import PlanPage from "./PlanPage";
 import {
   showSubscriptionDetail,
@@ -13,12 +12,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../features/userSlice";
 
 export default function ProfilePage() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const subscription = useSelector(selectSubscription);
-  const [prod, setProducts] = useState([]); //useState() hook, sets initial state to an empty array
+  const [prod, setProducts] = useState([]);
   const [changePlan, setChangePlan] = useState(false);
 
+  // fetch user's subscription details
   useEffect(() => {
     async function unsubscribe() {
       const item = await getDocs(users);
@@ -43,6 +42,7 @@ export default function ProfilePage() {
     });
   };
 
+  // if cancel membership, logout the user and update user's state of subscription at firebase
   const manageSubscription = async () => {
     await setDoc(doc(users, `${auth.currentUser.email}`), {
       subscribed: false,
@@ -51,9 +51,11 @@ export default function ProfilePage() {
     handleClick();
   };
 
+  //if users want to changePlan, redirect them to planPage
   const handleChange = () => {
     setChangePlan(true);
   };
+
   return (
     <div>
       {changePlan ? (
@@ -61,6 +63,7 @@ export default function ProfilePage() {
       ) : (
         <>
           <header className={`bg-[#141414]`}>
+            {/* Netflix logo */}
             <NavLink to="/">
               <img
                 src="https://rb.gy/ulxxee"
@@ -71,12 +74,14 @@ export default function ProfilePage() {
               />
             </NavLink>
 
+            {/* Profile Icon */}
             <img
               src="https://rb.gy/g1pwyx"
               alt=""
               className="cursor-pointer rounded"
             />
           </header>
+
           <main className="pt-24 mx-auto max-w-6xl px-5 pb-12 transition-all md:px-10">
             <div className="flex flex-col gap-x-4 md:flex-row md:items-center">
               <h1 className="text-3xl md:text-4xl">Account</h1>
@@ -88,7 +93,7 @@ export default function ProfilePage() {
               </div>
             </div>
 
-            {/* membership */}
+            {/* membership details */}
             <div className="mt-6 grid grid-cols-1 gap-x-4 border px-4 md:grid-cols-4 md:border-x-0 md:border-t md:border-b-0 md:px-0">
               {" "}
               <div className="space-y-2 py-4">
@@ -132,7 +137,7 @@ export default function ProfilePage() {
               </div>
             </div>
 
-            {/* current plan */}
+            {/* current plan details */}
             <div className="mt-6 grid grid-cols-1 gap-x-4 border px-4 py-4 md:grid-cols-4 md:border-x-0 md:border-t md:border-b-0 md:px-0 md:pb-0">
               <h4 className="text-lg text-[gray]">Plan Details</h4>
               <div className="col-span-2 font-medium">

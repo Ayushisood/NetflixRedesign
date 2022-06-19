@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// state to handle whether user is subscribed to a plan or not
 export const subscriptionSlice = createSlice({
   name: "subscription",
   initialState: {

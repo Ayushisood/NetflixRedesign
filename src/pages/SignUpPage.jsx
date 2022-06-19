@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { auth, users } from "../firebase";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "../features/userSlice";
 import {
   createUserWithEmailAndPassword,
@@ -17,6 +17,7 @@ export default function SignUpPage({ enteredValue }) {
   const setUser = (uid, email) => {
     dispatch(login({ uid: uid, email: email }));
   };
+
   const {
     register,
     handleSubmit,
@@ -46,6 +47,7 @@ export default function SignUpPage({ enteredValue }) {
     }
   };
 
+  //if user clicks on sign in, fetch his details from firebase
   const handleSignIn = () => {
     setLogin(true);
 
@@ -67,6 +69,7 @@ export default function SignUpPage({ enteredValue }) {
     }
     unsubscribe();
   };
+
   return (
     <div className="absolute top-5 md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 ">
       <form
@@ -75,6 +78,7 @@ export default function SignUpPage({ enteredValue }) {
       >
         <h1 className="text-4xl font-semibold">Sign In</h1>
         <div className="space-y-4">
+          {/* input email */}
           <label className="inline-block w-full">
             <input
               type="email"
@@ -89,6 +93,8 @@ export default function SignUpPage({ enteredValue }) {
               </p>
             )}
           </label>
+
+          {/* input password */}
           <label className="inline-block w-full">
             <input
               type="password"
@@ -103,6 +109,8 @@ export default function SignUpPage({ enteredValue }) {
             )}
           </label>
         </div>
+
+        {/* sign in button */}
         <button
           className="w-full rounded bg-[#E50914] py-3 font-semibold"
           onClick={handleSignIn}
@@ -110,6 +118,8 @@ export default function SignUpPage({ enteredValue }) {
         >
           Sign In
         </button>
+
+        {/* sign up button */}
         <div className="text-[gray]">
           New to Netflix?{" "}
           <button

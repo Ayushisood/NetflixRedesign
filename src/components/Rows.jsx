@@ -10,6 +10,7 @@ export default function Rows(
   const [isMoved, setIsMoved] = useState(false); //for showing left arrow
   const rowRef = useRef(null);
 
+  // fetching movies for each row
   useEffect(() => {
     async function fetchData() {
       if (title === "My List") setMovies(fetchURL);
@@ -22,8 +23,9 @@ export default function Rows(
     }
 
     fetchData();
-  }, [fetchURL]);
+  }, [fetchURL, title]);
 
+  // Row's Scroll functionality
   const handleClick = (direction) => {
     setIsMoved(true);
 
@@ -38,14 +40,16 @@ export default function Rows(
     }
   };
 
-  //let type;
   return (
     <div className="h-40 space-y-2.5 md:space-y-5 ">
+      {/* Row's Title */}
       <h2 className="w-58 cursor-pointer text-sm font-semibold text-[#e5e5e5] transition duration-200 text-left hover:text-white md:text-2xl">
         {title}
       </h2>
 
+      {/* Row's movies element */}
       <div className="group relative md:-ml-2 md:mr-7">
+        {/* Left arrow of scrollbar */}
         <FaChevronLeft
           className={`absolute top-0 bottom-0 left-2 z-40 m-auto h-6 w-6 cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100 md:h-9 md:w-7  ${
             !isMoved && "hidden"
@@ -57,6 +61,7 @@ export default function Rows(
           ref={rowRef}
           className="flex items-center md:my-4 md:py-4 overflow-x-scroll scrollbar-hide"
         >
+          {/* Mapping of fetched movies into array */}
           {movies?.map((movie) => (
             <Thumbnail
               key={movie.id}
@@ -67,6 +72,8 @@ export default function Rows(
             />
           ))}
         </div>
+
+        {/* Right arrow of scrollbar */}
         <FaChevronRight
           className="absolute top-0 bottom-0 right-2 z-40 m-auto h-6 w-6 cursor-pointer opacity-0 transition hover:scale-125 group-hover:opacity-100 md:h-9 md:w-7 "
           onClick={() => handleClick("right")}

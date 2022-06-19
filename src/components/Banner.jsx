@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import axios from "../utils/axios";
 import TypingEffect from "../utils/TypingEffect";
 import requests, { image_url } from "../utils/Requests";
@@ -13,6 +12,7 @@ export default function Banner() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // Function to call when banner button is clicked
   const clickHandle = () => {
     if (movie) {
       navigate("/detailScreen", { state: movie });
@@ -43,6 +43,7 @@ export default function Banner() {
 
   return (
     <div className="flex flex-col space-y-2 py-16  md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12 ">
+      {/* Banner Image */}
       <div className="absolute top-0 left-0 -z-10 h-[95vh] w-screen  object-cover object-center   ">
         <img
           src={`${image_url}${movie?.backdrop_path || movie?.poster_path}`}
@@ -50,6 +51,7 @@ export default function Banner() {
         />
       </div>
 
+      {/* Movie title with typing effect */}
       <h1 className="font-bold text-2xl md:text-4xl lg:text-7xl text-left">
         {(movie?.title || movie?.name || movie?.original_name) && (
           <TypingEffect
@@ -61,10 +63,12 @@ export default function Banner() {
         )}
       </h1>
 
+      {/* Movie Description */}
       <h1 className="max-w-xs text-xs md:max-w-lg md:text-lg lg:max-w-2xl lg:text-2xl text-left">
         {truncate(`${movie?.overview}`, 150)}
       </h1>
       <div className="flex space-x-3">
+        {/* Banner buttons */}
         <>
           <button
             className="bannerButton bg-red-600 shadow-xl shadow-red-800"

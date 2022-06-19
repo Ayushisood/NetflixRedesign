@@ -12,6 +12,7 @@ export default function HomePage() {
   const [myListMovies, setListMovies] = useState([]);
   const showModal = useSelector(selectModal);
 
+  //show movies in MyList if present
   useEffect(() => {
     if (auth) {
       return onSnapshot(
@@ -28,22 +29,23 @@ export default function HomePage() {
     }
   }, []);
 
-  // console.log(myListMovies);
   return (
     <div
       className={`relative h-screen bg-gradient-to-b from-gray-900/10 to-[#010511] lg:h-[140vh] ${
         showModal && "!h-screen overflow-hidden"
       }`}
     >
+      {/* Navbar */}
       <Nav />
       <div className="relative pl-4 pb-24 lg:space-y-24 lg:pl-16 overflow-hidden ">
+        {/* Banner */}
         <Banner />
 
+        {/* Rows */}
         <Rows
           title="NETFLIX ORIGINALS"
           fetchURL={requests.fetchNetflixOriginals}
         />
-
         <Rows title="Trending Nows" fetchURL={requests.fetchTrending} />
         <Rows title="Top Rated" fetchURL={requests.fetchTopRated} />
         {myListMovies?.length > 0 && (

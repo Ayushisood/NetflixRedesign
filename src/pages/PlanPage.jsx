@@ -6,7 +6,6 @@ import { AiOutlineCheck } from "react-icons/ai";
 import { products, users } from "../firebase";
 import { getDocs, setDoc, doc } from "firebase/firestore";
 import Table from "../components/Table";
-//import { BiLoaderAlt } from "react-icons/bi";
 import {
   showSubscriptionDetail,
   selectSubscription,
@@ -16,9 +15,10 @@ import { useNavigate } from "react-router-dom";
 export default function PlanPage() {
   const navigate = useNavigate();
   const subscription = useSelector(selectSubscription);
-  const [prod, setProducts] = useState([]); //useState() hook, sets initial state to an empty array
+  const [prod, setProducts] = useState([]);
   const [selectedPlan, setSelectedPlan] = useState(null);
 
+  //fetch subscription types from firebase
   useEffect(() => {
     async function unsubscribe() {
       const item = await getDocs(products);
@@ -58,6 +58,8 @@ export default function PlanPage() {
       }/${new Date().getDate()}/${new Date().getFullYear()}`,
     });
   }
+
+  //if user click subscribe button add user details to firebase
   const subscribeToPlan = () => {
     if (!auth) return;
 
@@ -70,6 +72,7 @@ export default function PlanPage() {
   return (
     <div>
       <header className="border-b border-white/10 bg-[#141414] ">
+        {/* Netflix logo */}
         <img
           alt=""
           src="https://rb.gy/ulxxee"
@@ -79,6 +82,7 @@ export default function PlanPage() {
           onClick={manageSubscription}
         />
 
+        {/* Sign out button */}
         <button
           className="text-lg font-medium hover:underline"
           onClick={handleClick}
@@ -87,9 +91,12 @@ export default function PlanPage() {
         </button>
       </header>
       <main className="mx-auto max-w-5xl px-5 pt-28 pb-12 transition-all md:px-10">
+        {/* Heading */}
         <h1 className="mb-3 text-lg md:text-3xl font-medium">
           Choose the plan that's right for you
         </h1>
+
+        {/* Heading contents */}
         <ul>
           <li className="flex items-center gap-x-2 text-sm md:text-lg">
             <AiOutlineCheck className=" h-5 w-5 md:h-7 md:w-7 text-[#E50914]" />{" "}
@@ -105,6 +112,7 @@ export default function PlanPage() {
           </li>
         </ul>
 
+        {/* show Table with contents of subscription types */}
         <div className="mt-4 flex flex-col space-y-4">
           <div className="flex w-full items-center self-end md:w-3/5">
             {prod.map((product) => (
@@ -120,6 +128,8 @@ export default function PlanPage() {
             ))}
           </div>
           <Table products={prod} selectedPlan={selectedPlan} />
+
+          {/* Subscribe button */}
           <button
             disabled={!selectedPlan}
             className={`mx-auto w-11/12 rounded bg-[#E50914] py-4 text-xl shadow hover:bg-[#f6121d] md:w-[420px] `}

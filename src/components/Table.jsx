@@ -1,9 +1,12 @@
 import React from "react";
 import { AiOutlineCheck } from "react-icons/ai";
+
+//function to diplay table UI on PlanPage /SubscriptionPage
 export default function Table({ products, selectedPlan }) {
   return (
     <table>
       <tbody className="divide-y divide-[gray]">
+        {/* First Row  */}
         <tr className="tableRow">
           <td className="tableDataTitle">Monthly price</td>
           {products.map((product) => (
@@ -21,6 +24,7 @@ export default function Table({ products, selectedPlan }) {
           ))}
         </tr>
 
+        {/* Second Row */}
         <tr className="tableRow">
           <td className="tableDataTitle">Video quality</td>
           {products.map((product) => (
@@ -36,6 +40,8 @@ export default function Table({ products, selectedPlan }) {
             </td>
           ))}
         </tr>
+
+        {/* Third Row */}
 
         <tr className="tableRow">
           <td className="tableDataTitle">Resolution</td>
@@ -53,6 +59,7 @@ export default function Table({ products, selectedPlan }) {
           ))}
         </tr>
 
+        {/* Last Row */}
         <tr className="tableRow">
           <td className="tableDataTitle">
             Watch on your TV, computer, mobile phone and tablet

@@ -9,9 +9,11 @@ export default function LoginPage() {
     // store the user input value
     setInputValue(event.target.value);
   };
+
   return (
     <div className="relative h-screen md:bg-cover md:bg-no-repeat md:bg-center md:bg-[url('https://rb.gy/p2hphi')] bg-black/75 ">
       <div>
+        {/* Netflix logo */}
         <img
           className="absolute left-4 top-4 cursor-pointer object-contain md:left-10 md:top-6"
           src="https://rb.gy/ulxxee"
@@ -19,14 +21,8 @@ export default function LoginPage() {
           height={150}
           alt="logo"
         />
-        {/* <button
-          onClick={() => setSignIn(true)}
-          type="submit"
-          className="fixed  top-5 right-5 text-lg font-semibold bg-red-600 text-white rounded cursor-pointer border-0 px-5 py-2 hidden md:block "
-        >
-          Sign In
-        </button> */}
 
+        {/* Background effect */}
         <div className="w-screen h-screen z-1 bg-gradient-to-b opacity-80" />
       </div>
 
@@ -35,6 +31,7 @@ export default function LoginPage() {
           <SignUpPage enteredValue={inputValue} />
         ) : (
           <div className="absolute top-1/3 text-center left-0 right-0 text-white z-1 mx-auto p-5 ">
+            {/* Headings */}
             <h1 className="text-xl md:text-2xl mb-5 font-bold">
               Unlimited films, TV programmes and more.
             </h1>
@@ -46,6 +43,7 @@ export default function LoginPage() {
               membership.
             </h3>
 
+            {/* Form to enter email with a button */}
             <div className="m-5">
               <form>
                 <input

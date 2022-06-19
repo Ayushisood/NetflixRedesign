@@ -8,7 +8,6 @@ import { FaVolumeOff, FaVolumeUp, FaThumbsUp } from "react-icons/fa";
 import { IoIosClose, IoIosAdd, IoIosCheckmark } from "react-icons/io";
 import { BsFillPlayCircleFill } from "react-icons/bs";
 import axios from "../utils/axios";
-
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   collection,
@@ -34,8 +33,7 @@ export default function DetailPage() {
   const [listMovies, setListMovies] = useState([]);
   const [errorMsg, setError] = useState(false);
 
-  //style for toast
-
+  // styling of toast component
   const toastStyle = {
     background: "white",
     color: "black",
@@ -47,8 +45,8 @@ export default function DetailPage() {
   };
 
   const dispatch = useDispatch();
-  // console.log(movie);
 
+  //fetch movie trailer if any
   useEffect(() => {
     if (!movie) return;
 
@@ -96,6 +94,7 @@ export default function DetailPage() {
     [listMovies, movie?.id]
   );
 
+  //if movie is added to a list show toast with msg and add that movie to firebase , if movie is removed from list delete that movie from firebase and show toast msg
   const handleList = async () => {
     if (addedToList) {
       //delete added list
@@ -130,14 +129,16 @@ export default function DetailPage() {
   };
 
   if (!showModal) return null;
-  console.log(errorMsg);
+
   return (
+    // background poster
     <div
       className="relative object-contain bg-cover bg-center h-screen"
       style={{
         backgroundImage: `url("${image_url}${movie?.backdrop_path}")`,
       }}
     >
+      {/* Modal to show  */}
       <Modal
         open={showModal}
         onClose={handleClose}
@@ -145,12 +146,16 @@ export default function DetailPage() {
       >
         <>
           <Toaster position="bottom-center" />
+
+          {/* Modal close button */}
           <button
             className="modalButton absolute right-5 top-5 !z-40 h-9 w-9 border-none bg-[#181818] hover:bg-[#181818] "
             onClick={handleClose}
           >
             <IoIosClose className="h-7 w-7" />
           </button>
+
+          {/* show video if present else show error image */}
           <div className="relative pt-[56.25%]">
             {errorMsg ? (
               <img
@@ -170,20 +175,11 @@ export default function DetailPage() {
                 muted={muted}
               />
             )}
-            {/* <ReactPlayer
-              url={`${
-                errorMsg
-                  ? "https://beaumonthfsi.com/img/no-video.gif"
-                  : `https://www.youtube.com/watch?v=${trailer}`
-              }`}
-              width="100%"
-              height="100%"
-              style={{ position: "absolute", top: "0", left: "0" }}
-              playing={playVideo}
-              muted={muted}
-            /> */}
+
+            {/* Video handling buttons */}
             <div className="absolute bottom-6 md:bottom-10 flex w-full items-center justify-between px-10">
               <div className="flex space-x-2">
+                {/* Video play button */}
                 <button
                   className="flex items-center gap-x-2 rounded bg-white px-4 md:px-6 text-xl font-bold text-black transition hover:bg-[#e6e6e6]"
                   onClick={() => setPlayVideo(!playVideo)}
@@ -191,6 +187,8 @@ export default function DetailPage() {
                   <BsFillPlayCircleFill className="h-5 w-5 md:h-7 md:w-7 text-black" />
                   Play
                 </button>
+
+                {/* Add/Remove to/from my List button */}
                 <button className="modalButton" onClick={handleList}>
                   {addedToList ? (
                     <IoIosCheckmark className="h-7 w-7 md:h-9 md:w-9" />
@@ -198,6 +196,8 @@ export default function DetailPage() {
                     <IoIosAdd className="h-7 w-7 md:h-9 md:w-9" />
                   )}
                 </button>
+
+                {/* Video like button */}
                 <button className="modalButton">
                   <FaThumbsUp
                     className={`h-6 w-6 ${likedVideo ? "text-blue-500" : ""}`}
@@ -205,6 +205,8 @@ export default function DetailPage() {
                   />
                 </button>
               </div>
+
+              {/* Video mute button */}
               <button className="modalButton" onClick={() => setMuted(!muted)}>
                 {muted ? (
                   <FaVolumeOff className="h-6 w-6" />
@@ -214,6 +216,8 @@ export default function DetailPage() {
               </button>
             </div>
           </div>
+
+          {/* Movie details */}
           <div className="flex space-x-16 rounded-b-md bg-[#181818] px-10 py-8">
             <div className="space-y-6 text-lg">
               <div className="flex items-center space-x-2 text-sm">

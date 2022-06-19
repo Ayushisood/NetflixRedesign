@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import DetailPage from "./pages/DetailPage";
 import ProfilePage from "./pages/ProfilePage";
 import HomePage from "./pages/HomePage";
@@ -13,14 +13,15 @@ import {
   selectSubscription,
   showSubscriptionDetail,
 } from "./features/subscriptionSlice";
-//import useSubscription from "./hooks/useSubscription";
 
 function App() {
   const user = useSelector(selectUser); //for retrieving logged in user from userSlice store, where logged in user info is stored
 
   const isSubscribed = useSelector(selectSubscription);
 
-  const dispatch = useDispatch(); //hook to access redux dispatch function
+  const dispatch = useDispatch();
+
+  //on reload check if user is already signed in,fetch data from firebaes and set subscription state accordingly
   useEffect(() => {
     async function unsubscribe() {
       const item = await getDocs(users);
@@ -39,16 +40,14 @@ function App() {
       );
     }
     unsubscribe();
-  }, [isSubscribed]);
+  }, [isSubscribed, dispatch]);
 
+  //checking if user is already signed in then set login state
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((userAuth) => {
       // observe the state change in user's sign in activity
       if (userAuth) {
-        //logged in
-        // console.log(userAuth);
         dispatch(login({ uid: userAuth.uid, email: userAuth.email }));
-        // console.log(userAuth);
       } else {
         //logged out
         dispatch(logout());

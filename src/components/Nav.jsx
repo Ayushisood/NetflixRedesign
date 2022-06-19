@@ -8,6 +8,7 @@ function Nav() {
   const [isScrolled, setScrolled] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
 
+  //handling the transparency of navbar, when user scrolls turns navbar background to black else remain transparent
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) setScrolled(true);
@@ -21,12 +22,14 @@ function Nav() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   return (
     <div
       className={`${
         isScrolled && "bg-[#111]"
       } fixed top-0 z-50 flex w-full items-center justify-between px-4 py-4  transition-all lg:px-6 lg:py-6`}
     >
+      {/* Netflix logo  */}
       <div className="flex items-center space-x-12">
         <img
           src="https://rb.gy/ulxxee"
@@ -36,6 +39,8 @@ function Nav() {
           className="cursor-pointer object-contain sm:w-36"
         />
         <BasicMenu />
+
+        {/* Options to show on Navbar */}
 
         <ul className="hidden space-x-8 md:flex">
           <li>
@@ -86,7 +91,9 @@ function Nav() {
 
       {/* right side icons */}
       <div className="flex items-center space-x-6 ">
+        {/* Notification icon */}
         <BsFillBellFill className="md:h-6 md:w-6 cursor-pointer hidden" />
+        {/* Search Icon and animation */}
         <div className="flex items-center">
           <BsSearch
             className="hidden md:h-6 md:w-6 sm:inline cursor-pointer"
@@ -103,8 +110,8 @@ function Nav() {
           />
         </div>
 
+        {/* Profile Icon to navigate to profilePage */}
         <NavLink to="profileScreen" end>
-          {/* <FaUserCircle className="md:h-8 md:w-8 cursor-pointer text-red-600" /> */}
           <img
             src="https://rb.gy/g1pwyx"
             alt=""
