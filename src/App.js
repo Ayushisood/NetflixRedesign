@@ -57,7 +57,6 @@ function App() {
     return unsubscribe; // for cleanup the previous state
   }, [dispatch]);
 
-  console.log(isSubscribed);
   return (
     <div>
       <BrowserRouter>
