@@ -3,7 +3,7 @@ import SignUpPage from "./SignUpPage";
 
 export default function LoginPage() {
   const [signIn, setSignIn] = useState(false);
-  const [inputValue, setInputValue] = useState(null);
+  const [inputValue, setInputValue] = useState("");
 
   const getInputValue = (event) => {
     // store the user input value
@@ -11,7 +11,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="relative h-screen md:bg-cover md:bg-no-repeat md:bg-center md:bg-[url('https://rb.gy/p2hphi')] bg-black/75 ">
+    <div className="relative h-screen md:bg-cover md:bg-no-repeat md:bg-center bg-black/75 ">
       <div>
         {/* Netflix logo */}
         <img
