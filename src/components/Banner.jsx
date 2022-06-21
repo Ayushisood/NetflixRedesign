@@ -49,12 +49,12 @@ export default function Banner() {
   return (
     <div className="flex flex-col space-y-2 py-16  md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12 ">
       {/* Banner Image */}
-      <div className="absolute top-0 left-0 -z-10 h-[95vh] w-screen  object-cover object-center   ">
-        <img
-          src={`${image_url}${movie?.backdrop_path || movie?.poster_path}`}
-          alt=""
-        />
-      </div>
+      <div
+        className="absolute top-0 left-0 -z-10 h-[95vh] w-screen object-contain bg-cover bg-center"
+        style={{
+          backgroundImage: `url("${image_url}${movie?.backdrop_path}")`,
+        }}
+      ></div>
 
       {/* Movie title with typing effect */}
       <h1 className="font-bold text-2xl md:text-4xl lg:text-7xl text-left">

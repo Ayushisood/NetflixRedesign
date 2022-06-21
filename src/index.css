@@ -5,7 +5,7 @@
 /* html,body font-['Montserrat',sans-serif] */
 @layer base {
   body {
-    @apply bg-black text-white font-['Raleway',sans-serif] !scrollbar-thin !scrollbar-thumb-red-600 !scrollbar-track-transparent;
+    @apply bg-[#141414] text-white font-['Raleway',sans-serif] !scrollbar-thin !scrollbar-thumb-red-600 !scrollbar-track-transparent;
     /* !- it implies important */
   }
   header {

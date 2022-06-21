@@ -31,7 +31,7 @@ export default function HomePage() {
 
   return (
     <div
-      className={`relative  bg-gradient-to-b from-gray-900/10 to-[#010511] md:h-[140vh] ${
+      className={`relative  bg-gradient-to-b from-gray-900/10 to-[#010511] h-screen md:h-[140vh] ${
         showModal && "!h-screen overflow-hidden"
       }`}
     >
