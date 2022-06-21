@@ -22,8 +22,9 @@ export default function Banner() {
   };
 
   useEffect(() => {
-    //callback having side-effect to run
+    let isApiSubscribed = false;
     async function fetchData() {
+      if (isApiSubscribed) return;
       const request = await axios.get(requests.fetchNetflixOriginals);
       setMovie(
         request.data.results[
@@ -34,6 +35,10 @@ export default function Banner() {
     }
 
     fetchData(); //calling the async function in callback of useEffect
+    return () => {
+      // cancel the subscription
+      isApiSubscribed = true;
+    };
   }, []);
 
   function truncate(string, num) {

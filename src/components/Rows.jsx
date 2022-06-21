@@ -12,7 +12,9 @@ export default function Rows(
 
   // fetching movies for each row
   useEffect(() => {
+    let isApiSubscribed = false;
     async function fetchData() {
+      if (isApiSubscribed) return;
       if (title === "My List") setMovies(fetchURL);
       else {
         const request = await axios.get(fetchURL);
@@ -23,6 +25,11 @@ export default function Rows(
     }
 
     fetchData();
+
+    return () => {
+      // cancel the subscription, cleanup function to reove errorCan't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.
+      isApiSubscribed = true;
+    };
   }, [fetchURL, title]);
 
   // Row's Scroll functionality

@@ -82,7 +82,6 @@ export default function SignUpPage({ enteredValue }) {
           <label className="inline-block w-full">
             <input
               type="email"
-              placeholder={enteredValue ? "" : "Email"}
               value={enteredValue}
               className={`input`}
               {...register("email", { required: true })}

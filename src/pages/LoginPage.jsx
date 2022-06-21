@@ -11,7 +11,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="relative h-screen md:bg-cover md:bg-no-repeat md:bg-center bg-black/75 ">
+    <div className="relative h-screen md:bg-cover md:bg-no-repeat md:bg-center bg-black/75 md:bg-[url('https://rb.gy/p2hphi')]">
       <div>
         {/* Netflix logo */}
         <img
@@ -53,6 +53,7 @@ export default function LoginPage() {
                   onChange={getInputValue}
                 />
                 <button
+                  disabled={!inputValue}
                   type="button"
                   onClick={() => setSignIn(true)}
                   className="font-semibold text-xl bg-red-700 text-white border-0 rounded cursor-pointer px-5 py-3  my-5 w-full md:w-1/3"

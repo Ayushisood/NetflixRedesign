@@ -17,10 +17,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore();
 const auth = getAuth();
+const db = getFirestore();
 const products = collection(db, "products");
 const users = collection(db, "users");
 
 export default app;
-export { db, auth, products, users };
+export { auth, db, products, users };
