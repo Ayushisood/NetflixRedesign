@@ -74,7 +74,9 @@ export default function Rows(
               key={movie.id}
               movie={movie}
               myclass={`${
-                title === "My List" ? "md:w-[260px]" : "md:min-w-[260px]"
+                title === "My List"
+                  ? "w-[180px] md:w-[260px]"
+                  : "min-w-[180px] md:min-w-[260px]"
               }`}
             />
           ))}

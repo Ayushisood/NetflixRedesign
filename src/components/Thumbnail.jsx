@@ -21,7 +21,7 @@ export default function Thumbnail({ movie, myclass }) {
 
   return (
     <div
-      className={`relative h-28 min-w-[180px] px-1.5 transition duration-200 ease-out md:h-36  ${myclass}
+      className={`relative h-28  px-1.5 transition duration-200 ease-out md:h-36  ${myclass}
        md:hover:scale-125   md:hover:mx-6 `}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
@@ -36,7 +36,7 @@ export default function Thumbnail({ movie, myclass }) {
 
       {/* Background color effect on hover*/}
       <div
-        className={`absolute inset-x-1.5 top-0 bottom-1  bg-black opacity-40 ${
+        className={`absolute inset-x-1.5 top-0 bottom-4 md:bottom-1  bg-black opacity-40 ${
           isHover ? "visible" : "hidden"
         }`}
       ></div>
