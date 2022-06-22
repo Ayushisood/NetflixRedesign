@@ -30,13 +30,12 @@ export default function Thumbnail({ movie, myclass }) {
       <img
         src={`${image_width}${movie?.backdrop_path || movie?.poster_path}`}
         alt={`${movie.name}`}
-        className="rounded-sm object-cover md:rounded"
-        layout="fill"
+        className="rounded-sm object-cover h-full w-full md:rounded"
       />
 
       {/* Background color effect on hover*/}
       <div
-        className={`absolute inset-x-1.5 top-0 bottom-4 md:bottom-1  bg-black opacity-40 ${
+        className={`absolute inset-x-1.5 inset-y-0 bg-black opacity-40 ${
           isHover ? "visible" : "hidden"
         }`}
       ></div>
