@@ -49,12 +49,13 @@ export default function Banner() {
   return (
     <div className="flex flex-col space-y-2 py-16  md:space-y-4 lg:h-[65vh] lg:justify-end lg:pb-12 ">
       {/* Banner Image */}
-      <div
-        className="absolute top-0 left-0 -z-10 h-[95vh] w-screen object-contain bg-cover bg-center"
-        style={{
-          backgroundImage: `url("${image_url}${movie?.backdrop_path}")`,
-        }}
-      ></div>
+      <div className="absolute top-0 left-0 -z-10 h-[95vh] w-screen ">
+        <img
+          alt=""
+          src={`${image_url}${movie?.backdrop_path}`}
+          className="object-cover md:w-screen"
+        />
+      </div>
 
       {/* Movie title with typing effect */}
       <h1 className="font-bold text-2xl md:text-4xl lg:text-7xl text-left">
@@ -62,7 +63,7 @@ export default function Banner() {
           <TypingEffect
             text={truncate(
               `${movie?.title || movie?.name || movie?.original_name}`,
-              30
+              25
             )}
           />
         )}

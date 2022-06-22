@@ -31,7 +31,7 @@ export default function HomePage() {
 
   return (
     <div
-      className={`relative  bg-gradient-to-b from-gray-900/10 to-[#010511] h-screen md:h-[140vh] ${
+      className={`relative h-[47vh] bg-gradient-to-b from-gray-900/10 to-[#010511]  md:h-[55vh] lg:h-[140vh] ${
         showModal && "!h-screen overflow-hidden"
       }`}
     >
@@ -42,20 +42,25 @@ export default function HomePage() {
         <Banner />
 
         {/* Rows */}
-        <Rows
-          title="NETFLIX ORIGINALS"
-          fetchURL={requests.fetchNetflixOriginals}
-        />
-        <Rows title="Trending Nows" fetchURL={requests.fetchTrending} />
-        <Rows title="Top Rated" fetchURL={requests.fetchTopRated} />
-        {myListMovies?.length > 0 && (
-          <Rows title="My List" fetchURL={myListMovies} />
-        )}
-        <Rows title="Action Movies" fetchURL={requests.fetchActionMovies} />
-        <Rows title="Horror Movies" fetchURL={requests.fetchHorrorMovies} />
-        <Rows title="Romantic Movies" fetchURL={requests.fetchRomanceMovies} />
-        <Rows title="Comedy Movies" fetchURL={requests.fetchComedyMovies} />
-        <Rows title="Documentaries" fetchURL={requests.fetchDocumentaries} />
+        <section className="md:space-y-24">
+          <Rows
+            title="NETFLIX ORIGINALS"
+            fetchURL={requests.fetchNetflixOriginals}
+          />
+          <Rows title="Trending Nows" fetchURL={requests.fetchTrending} />
+          <Rows title="Top Rated" fetchURL={requests.fetchTopRated} />
+          {myListMovies?.length > 0 && (
+            <Rows title="My List" fetchURL={myListMovies} />
+          )}
+          <Rows title="Action Movies" fetchURL={requests.fetchActionMovies} />
+          <Rows title="Horror Movies" fetchURL={requests.fetchHorrorMovies} />
+          <Rows
+            title="Romantic Movies"
+            fetchURL={requests.fetchRomanceMovies}
+          />
+          <Rows title="Comedy Movies" fetchURL={requests.fetchComedyMovies} />
+          <Rows title="Documentaries" fetchURL={requests.fetchDocumentaries} />
+        </section>
       </div>
     </div>
   );
