@@ -60,7 +60,7 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        {!user ? (
+        {user===null ? (
           <LoginPage />
         ) : (
           <>
