@@ -10,6 +10,7 @@ import {
 } from "../features/subscriptionSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../features/userSlice";
+import { signOut } from "firebase/auth";
 
 export default function ProfilePage() {
   const navigate = useNavigate();
@@ -36,10 +37,18 @@ export default function ProfilePage() {
     unsubscribe();
   }, []);
 
+  // sign out
   const handleClick = () => {
-    auth.onAuthStateChanged(() => {
+    // auth.onAuthStateChanged(() => {
+    //   dispatch(logout());
+    //   dispatch(showSubscriptionDetail({ subscription: null }));
+    // });
+    // navigate("/");
+
+    signOut(auth).then(() => {
       dispatch(logout());
-      dispatch(showSubscriptionDetail({ subscription: false }));
+    }).catch((error) => {
+       console.log(error);
     });
     navigate("/");
   };
@@ -49,7 +58,7 @@ export default function ProfilePage() {
     await setDoc(doc(users, `${auth.currentUser.email}`), {
       subscribed: false,
     });
-    dispatch(showSubscriptionDetail({ subscription: false }));
+    dispatch(showSubscriptionDetail({ subscription: null }));
     handleClick();
   };
 

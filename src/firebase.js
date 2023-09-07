@@ -7,12 +7,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBR2T6LTAPWTrpgpXW20fl2zPRb0Alnq3Y",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "netflic-clone-yt-35b6f.firebaseapp.com",
   projectId: "netflic-clone-yt-35b6f",
   storageBucket: "netflic-clone-yt-35b6f.appspot.com",
-  messagingSenderId: "348919254618",
-  appId: "1:348919254618:web:a01bb1041d60c4ccb75263",
+  messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase

@@ -45,6 +45,7 @@ function App() {
   //checking if user is already signed in then set login state
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+      console.log(userAuth);
       // observe the state change in user's sign in activity
       if (userAuth) {
         dispatch(login({ uid: userAuth.uid, email: userAuth.email }));
@@ -60,7 +61,7 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        {user===null ? (
+        {!user ? (
           <LoginPage />
         ) : (
           <>
