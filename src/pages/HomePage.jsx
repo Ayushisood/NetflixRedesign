@@ -14,7 +14,7 @@ export default function HomePage() {
 
   //show movies in MyList if present
   useEffect(() => {
-    if (auth) {
+    if (auth?.currentUser) {
       return onSnapshot(
         collection(db, "users", auth?.currentUser.email, "myList"),
         (snapshot) => {

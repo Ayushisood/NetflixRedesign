@@ -9,7 +9,7 @@ export const subscriptionSlice = createSlice({
 
   reducers: {
     showSubscriptionDetail: (state, action) => {
-      state.subscription = action.payload.subscription;
+      state.subscription = action.payload;
     },
   },
 });
@@ -17,6 +17,6 @@ export const subscriptionSlice = createSlice({
 export const { showSubscriptionDetail } = subscriptionSlice.actions;
 
 export const selectSubscription = (state) =>
-  state.subscription?.subscription;
+  state.subscription?.subscription?.subscription;
 
 export const subscriptionReducer = subscriptionSlice.reducer;
